@@ -9,10 +9,14 @@ class CustomField extends StatelessWidget {
     required this.hintText,
     required this.controller,
     this.onTap,
+    this.isSearchField = false,
+    this.prefIcon,
   });
   final String hintText;
   final TextEditingController? controller;
   final VoidCallback? onTap;
+  final bool isSearchField;
+  final Icon? prefIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -26,10 +30,13 @@ class CustomField extends StatelessWidget {
       },
       controller: controller,
       decoration: InputDecoration(
+        prefixIcon: prefIcon,
+        prefixIconColor: Pallete.hintTextColor,
+        contentPadding: EdgeInsets.all(isSearchField ? 10 : 18),
         hintStyle: GoogleFonts.inter(
             color: Pallete.hintTextColor,
             fontWeight: FontWeight.w300,
-            fontSize: w * .04),
+            fontSize: isSearchField ? w * .034 : w * .04),
         hintText: hintText,
       ),
     );

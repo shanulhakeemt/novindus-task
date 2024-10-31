@@ -15,10 +15,11 @@ class Pallete {
   static const Color blackColor = Color(0xff000000);
   static const Color subtitleText = Color(0xff006837);
   static Color hintTextColor = const Color(0x66000000);
-  static const Color gradient1 = Color.fromRGBO(187, 63, 221, 1);
-  static const Color gradient2 = Color.fromRGBO(251, 109, 169, 1);
-  static const Color gradient3 = Color.fromRGBO(255, 159, 124, 1);
-  static const Color borderColor = Color.fromRGBO(52, 51, 67, 1);
+  static Color tailTextColor = const Color(0x80000000) // 80 for 50% opacity, 000000 for black
+;
+
+  static const Color iconRedColor = Color(0xffF24E1E);
+  static const Color containerGreyColor = Color(0xffF1F1F1);
   static const Color whiteColor = Color(0xffFFFFFF);
   static const Color greyColor = Colors.grey;
   static const Color errorColor = Colors.redAccent;

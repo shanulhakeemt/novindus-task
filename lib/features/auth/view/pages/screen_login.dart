@@ -4,8 +4,10 @@ import 'package:novindus_task/core/constants/asset_constants.dart';
 import 'package:novindus_task/core/theme/app_pallete.dart';
 import 'package:novindus_task/core/theme/text_style.dart';
 import 'package:novindus_task/core/theme/theme.dart';
+import 'package:novindus_task/core/ustils.dart';
 import 'package:novindus_task/core/widgets/custom_button.dart';
 import 'package:novindus_task/core/widgets/custom_field.dart';
+import 'package:novindus_task/features/home/view/pages/screen_home.dart';
 
 class ScreenLogin extends StatefulWidget {
   const ScreenLogin({super.key});
@@ -95,9 +97,13 @@ class _ScreenLoginState extends State<ScreenLogin> {
                             controller: emailController),
                         SizedBox(
                           height: h * .25,
-                          child: const Center(
+                          child: Center(
                             child: CustomButton(
+                              containerHeight: h * .06,
+                              textSize: w * .04,
                               buttonText: 'Login',
+                              onTap: () => navigate(
+                                  context: context, screen: const ScreenHome()),
                             ),
                           ),
                         ),
