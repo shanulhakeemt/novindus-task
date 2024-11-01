@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:novindus_task/core/constants/asset_constants.dart';
-import 'package:novindus_task/core/ustils.dart';
+import 'package:novindus_task/core/utils.dart';
 import 'package:novindus_task/features/auth/view/pages/screen_login.dart';
 
 class SplashScreen extends StatefulWidget {

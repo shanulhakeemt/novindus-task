@@ -4,10 +4,14 @@ import 'package:novindus_task/core/constants/asset_constants.dart';
 import 'package:novindus_task/core/theme/app_pallete.dart';
 import 'package:novindus_task/core/theme/text_style.dart';
 import 'package:novindus_task/core/theme/theme.dart';
-import 'package:novindus_task/core/ustils.dart';
+import 'package:novindus_task/core/utils.dart';
 import 'package:novindus_task/core/widgets/custom_button.dart';
 import 'package:novindus_task/core/widgets/custom_field.dart';
+import 'package:novindus_task/core/widgets/loader.dart';
+import 'package:novindus_task/features/auth/repository/auth_remote_repository.dart';
+import 'package:novindus_task/features/auth/viewmodel/auth_viewmodel.dart';
 import 'package:novindus_task/features/home/view/pages/screen_home.dart';
+import 'package:provider/provider.dart';
 
 class ScreenLogin extends StatefulWidget {
   const ScreenLogin({super.key});
@@ -32,6 +36,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
   Widget build(BuildContext context) {
     w = MediaQuery.of(context).size.width;
     h = MediaQuery.of(context).size.height;
+
     return Scaffold(
       body: SingleChildScrollView(
         child: Column(
@@ -85,7 +90,7 @@ class _ScreenLoginState extends State<ScreenLogin> {
                           height: h * .019,
                         ),
                         Text(
-                          "Email",
+                          "Password",
                           style: getTextStylePoppins(
                               width: w * .041, weight: FontWeightType.four),
                         ),
@@ -93,18 +98,28 @@ class _ScreenLoginState extends State<ScreenLogin> {
                           height: h * .006,
                         ),
                         CustomField(
-                            hintText: 'Enter your email',
-                            controller: emailController),
+                            hintText: 'Enter your password',
+                            controller: passController),
                         SizedBox(
                           height: h * .25,
                           child: Center(
-                            child: CustomButton(
-                              containerHeight: h * .06,
-                              textSize: w * .04,
-                              buttonText: 'Login',
-                              onTap: () => navigate(
-                                  context: context, screen: const ScreenHome()),
-                            ),
+                            child: Consumer<AuthViewModel>(
+                                builder: (context, authViewModel, child) {
+                              return CustomButton(
+                                isLoading: authViewModel.isLoading,
+                                containerHeight: h * .06,
+                                textSize: w * .04,
+                                buttonText: 'Login',
+                                onTap: () async {
+                                  await Provider.of<AuthViewModel>(context,
+                                          listen: false)
+                                      .login(
+                                          password: passController.text.trim(),
+                                          username: emailController.text.trim(),
+                                          context: context);
+                                },
+                              );
+                            }),
                           ),
                         ),
                         RichText(

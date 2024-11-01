@@ -11,11 +11,13 @@ class CustomField extends StatelessWidget {
     this.onTap,
     this.isSearchField = false,
     this.prefIcon,
+    this.isNumber = false,
   });
   final String hintText;
   final TextEditingController? controller;
   final VoidCallback? onTap;
   final bool isSearchField;
+  final bool isNumber;
   final Icon? prefIcon;
 
   @override
@@ -29,6 +31,7 @@ class CustomField extends StatelessWidget {
         return null;
       },
       controller: controller,
+      keyboardType: isNumber ? TextInputType.number : TextInputType.text,
       decoration: InputDecoration(
         prefixIcon: prefIcon,
         prefixIconColor: Pallete.hintTextColor,

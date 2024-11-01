@@ -3,9 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:novindus_task/core/common/variables/variables.dart';
 import 'package:novindus_task/core/theme/app_pallete.dart';
 import 'package:novindus_task/core/theme/text_style.dart';
+import 'package:novindus_task/features/home/models/patient_model.dart';
 
 class PatientCard extends StatelessWidget {
-  const PatientCard({super.key});
+  const PatientCard({super.key, required this.patientModel, required this.index});
+  final PatientModel patientModel;
+  final int index;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +30,7 @@ class PatientCard extends StatelessWidget {
                       width: w * .08,
                       child: Center(
                         child: Text(
-                          '1. ',
+                          '$index. ',
                           style: getTextStylePoppins(width: w * .04),
                         ),
                       )),
@@ -37,7 +40,7 @@ class PatientCard extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          "Vikram Singh",
+                          patientModel.name,
                           style: getTextStylePoppins(width: w * .04),
                         ),
                         Text(
@@ -76,7 +79,7 @@ class PatientCard extends StatelessWidget {
                             Row(
                               children: [
                                 Text(
-                                  "Jithesh",
+                                  patientModel.user,
                                   style: getTextStylePoppins(
                                       width: w * .03,
                                       color: Pallete.tailTextColor,
@@ -99,8 +102,7 @@ class PatientCard extends StatelessWidget {
               const Divider(
                 color: Pallete.greyColor, // Set the color of the line
                 thickness: 1.0, // Set the thickness of the line
-                indent: 16.0, // Optional: space before the line starts
-                endIndent: 16.0, // Optional: space after the line ends
+                // Optional: space after the line ends
               ),
               SizedBox(
                 height: h * .0051,
